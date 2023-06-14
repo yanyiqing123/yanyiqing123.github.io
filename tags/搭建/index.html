@@ -29,46 +29,33 @@
 	</header>
 
 	<main>
-		<h1>Archive</h1>
+		
 
-
+<h1>#搭建</h1>
 
 
 
 <ul class="archive">
-	
-	
-		<li class="archive__year archive__expendable ">
-			<span>2023</span>
+		<li class="archive__year archive__expendable archive__expendable_disabled">
 			<ul>
+			
 				
-					<li class="archive__month archive__expendable">
-						<span>June</span>
-						<ul>
-							
-								<li class="archive__entry"><a href="/2023/06/13/Git/">Git</a></li>
-							
-								<li class="archive__entry"><a href="/2023/06/07/hello-world/">Hello World</a></li>
-							
-						</ul>
-					</li>
+			
+				
+					
+					
+						<li class="archive__entry"><a href="/2023/06/13/Git/">Git</a></li>
+					
 
 				
+					
+					
+
+				
+			
 			</ul>
 		</li>
-		
-	
 </ul>
-
-<script>
-	const expandables = document.querySelectorAll('.archive__expendable')
-	for(let i = 0; i < expandables.length; i++) {
-		expandables[i].addEventListener('click', (e) => {
-			e.stopPropagation()
-			expandables[i].classList.toggle('archive__expendable_collapsed')
-		})
-	}
-</script>
 
 	</main>
 
