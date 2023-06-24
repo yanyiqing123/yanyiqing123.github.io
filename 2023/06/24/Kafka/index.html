@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="theme-color" content="#33474d">
+	<title>Kafka | Hexo</title>
+	<link rel="stylesheet" href="/css/style.css" />
+	
+      <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+
+	<header class="header">
+		<nav class="header__nav">
+			
+				<a href="/archives" class="header__link">Archive</a>
+			
+				<a href="/tags" class="header__link">Tags</a>
+			
+				<a href="/atom.xml" class="header__link">RSS</a>
+			
+		</nav>
+		<h1 class="header__title"><a href="/">Hexo</a></h1>
+		<h2 class="header__subtitle"></h2>
+	</header>
+
+	<main>
+		<article>
+	
+		<h1>Kafka</h1>
+	
+	<div class="article__infos">
+		<span class="article__date">2023-06-24</span><br />
+		
+			<span class="article__category">
+				<a class="article-category-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a>
+			</span><br />
+		
+		
+			<span class="article__tags">
+			  	<a class="article__tag-none-link" href="/tags/kafka/" rel="tag">kafka</a> <a class="article__tag-none-link" href="/tags/%E6%90%AD%E5%BB%BA/" rel="tag">搭建</a>
+			</span>
+		
+	</div>
+
+	
+
+	
+		<h2 id="一、命令行操作"><a href="#一、命令行操作" class="headerlink" title="一、命令行操作"></a>一、命令行操作</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.创建topic:</span><br><span class="line">./kafka-topics.sh --create --topic tpc_1 --partitions 2 --replication-factor 2 --zookeeper node1:2181</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2.删除topic</span><br><span class="line">bin/kafka-topics.sh  --delete --topic tpc_1 --zookeeper node1：2181</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">3.查看topic</span><br><span class="line">bin/kafka-topics.sh --zookeeper node1:2181,node2:2181,node3:2181 –list</span><br></pre></td></tr></table></figure>
+<p><figure class="figure"><img src="/../image-kafka/1.png"></figure></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">4.增加分区数</span><br><span class="line">bin/kafka-topics.sh --alter --topic tpc_1 --partitions 3 --zookeeper node1:2181</span><br></pre></td></tr></table></figure>
+<p><figure class="figure"><img src="/../image-kafka/2.png"></figure></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">5.生产消息到kafka并进行消费</span><br><span class="line">#example1-kafka-console-producer</span><br><span class="line">bin/kafka-console-producer.sh --broker-list node1:9092, node2:9092, node3:9092 --topic tpc_1</span><br><span class="line">&gt;2-2</span><br><span class="line">&gt;2-5</span><br><span class="line">&gt;2-3</span><br><span class="line">&gt;5-6</span><br><span class="line">&gt;bigdata</span><br><span class="line">&gt;hello</span><br></pre></td></tr></table></figure>
+<p><figure class="figure"><img src="/../image-kafka/3.png"></figure></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">6.配置管理kafka-configs</span><br></pre></td></tr></table></figure>
+<p><figure class="figure"><img src="/../image-kafka/4.png"></figure></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7.kafka的生产者/消费者/工具</span><br></pre></td></tr></table></figure>
+<p><figure class="figure"><img src="/../image-kafka/5.png"></figure></p>
+<h2 id="二、Kafka的基准测试"><a href="#二、Kafka的基准测试" class="headerlink" title="二、Kafka的基准测试"></a>二、Kafka的基准测试</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Kafka中提供了内置的性能测试工具 </span><br><span class="line">生产者：测试生产每秒传输的数据量（多少条数据、多少M的数据）</span><br></pre></td></tr></table></figure>
+<p><figure class="figure"><img src="/../image-kafka/6.png"></figure><br><figure class="figure"><img src="/../image-kafka/7.png"></figure><br><figure class="figure"><img src="/../image-kafka/8.png"></figure><br><figure class="figure"><img src="/../image-kafka/9.png"></figure><br><figure class="figure"><img src="/../image-kafka/10.png"></figure></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">结论：主题的分区数越多，kafka吞吐量越大。</span><br></pre></td></tr></table></figure>
+<h2 id="三、重要的生产者参数"><a href="#三、重要的生产者参数" class="headerlink" title="三、重要的生产者参数"></a>三、重要的生产者参数</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">acks:</span><br><span class="line">acks=0含义：Producer 往集群发送数据不需要等到集群的返回，不确保消息发送成功。安全性最低但是效率最高。</span><br><span class="line">acks=1含义：Producer 往集群发送数据只要Leader 成功写入消息就可以发送下一条，只确保Leader 接收成功。</span><br><span class="line">acks= -1(all) 含义：Producer 往集群发送数据需要所有的ISR Follower 都完成从Leader 的同步才会发送下一条，确保Leader 发送成功和所有的副本都成功接收。安全性最高，但是效率最低。</span><br></pre></td></tr></table></figure>
+<h2 id="四、Kafka的读写流程"><a href="#四、Kafka的读写流程" class="headerlink" title="四、Kafka的读写流程"></a>四、Kafka的读写流程</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.写流程：</span><br><span class="line">①首先通过zookeeper找到partition对应的leader，leader负责写。</span><br><span class="line">②producer开始写入数据</span><br><span class="line">③ISR里面的follower开始同步数据，并返回给leader ACK。</span><br><span class="line">④返回给producer ACK</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">2.读流程</span><br><span class="line">①通过zookeeper找partition对于的leader，leader负责读</span><br><span class="line">②通过ZooKeeper找到消费者对应的offset</span><br><span class="line">③然后开始从offset往后顺序拉取数据</span><br><span class="line">④提交offset（自动提交——每隔多少秒提交一次offset、手动提交——放入到事务中提交）</span><br></pre></td></tr></table></figure>
+	
+
+	
+		<span class="different-posts"><a href="/2023/06/24/Kafka/" onclick="window.history.go(-1); return false;">⬅️ Go back </a></span>
+
+	
+
+</article>
+
+	</main>
+
+	<footer class="footer">
+	<div class="footer-content">
+		
+	      <div class="footer__element">
+	<p>Hi there, <br />welcome to my Blog glad you found it. Have a look around, will you?</p>
+</div>
+
+	    
+	      <div class="footer__element">
+	<h5>Check out</h5>
+	<ul class="footer-links">
+		<li class="footer-links__link"><a href="/archives">Archive</a></li>
+		
+		  <li class="footer-links__link"><a href="/atom.xml">RSS</a></li>
+	    
+		<li class="footer-links__link"><a href="/about">about page</a></li>
+		<li class="footer-links__link"><a href="/tags">Tags</a></li>
+		<li class="footer-links__link"><a href="/categories">Categories</a></li>
+	</ul>
+</div>
+
+	    
+
+		<div class="footer-credit">
+			<span>© 2023 John Doe | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/HoverBaum/meilidu-hexo">MeiliDu</a></span>
+		</div>
+
+	</div>
+
+
+</footer>
+
+
+
+</body>
+
+</html>
